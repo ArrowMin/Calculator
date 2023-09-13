@@ -1,0 +1,33 @@
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.calculatorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /*overflow: hidden; */
+}
+
+.calculator {
+    border: 1px solid red;
+    aspect-ratio: 3/4;
+    height: 80vh;
+    min-height: 200px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+    border: 1px solid blue;
+    flex-grow: 1;
+}
+
+.buttonContainer {
+    border: 1px solid yellow;
+    flex-grow: 4;
+}
