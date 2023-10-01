@@ -30,4 +30,10 @@ body {
 .buttonContainer {
     border: 1px solid yellow;
     flex-grow: 4;
+
+    display: grid;
+}
+
+.button {
+    border: 1px solid green;
 }
