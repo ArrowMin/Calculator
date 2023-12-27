@@ -27,12 +27,13 @@ body {
   border: 1px solid blue;
   font-size: 32px;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
 }
 
 .displaybox {
-  font-size: 32px;
+  font-size: 48px;
+  margin-right: 10px;
 }
 
 .buttonContainer {
@@ -40,6 +41,9 @@ body {
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  column-gap: 1em;
+  row-gap: 1em;
+  padding: 20px;
 }
 
 .button {
@@ -49,4 +53,5 @@ body {
   align-items: center;
   font-size: 32px;
   overflow: hidden;
+  border-radius: 15px;
 }
