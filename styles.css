@@ -13,7 +13,7 @@ body {
 }
 
 .calculator {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   aspect-ratio: 3/4;
   height: 70vh;
   min-height: 373.33px;
@@ -21,14 +21,18 @@ body {
   display: grid;
   grid-template-rows: 1fr 4fr;
   margin: 20px;
+  border-radius: 30px;
+  background-color: grey;
 }
 
 .display {
-  border: 1px solid blue;
+  border: 1px solid black;
   font-size: 32px;
   display: flex;
   justify-content: end;
   align-items: center;
+  margin: 20px 20px 0px 20px;
+  background-color: rgb(118, 144, 90)
 }
 
 .displaybox {
@@ -37,7 +41,7 @@ body {
 }
 
 .buttonContainer {
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -47,11 +51,16 @@ body {
 }
 
 .button {
-  border: 1px solid green;
+  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 32px;
   overflow: hidden;
   border-radius: 15px;
+  background-color: rgb(240, 240, 240);
+}
+
+.wordbutton {
+    font-size: 24px;
 }
