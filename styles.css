@@ -61,6 +61,7 @@ body {
   background-color: rgb(240, 240, 240);
 }
 
-.wordbutton {
+.clearbutton,
+.deletebutton {
   font-size: 24px;
 }
