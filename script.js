@@ -69,6 +69,13 @@ function calculate(firstTerm, secondTerm, sign) {
 
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
+        //IF PRESSING CLEAR BUTTON
+        if (btn.classList.contains("clearbutton")) {
+            display.innerText = "";
+            term1 = "";
+            term2 = "";
+            operator = "";
+        }
         //IF PRESSING NUMBER BUTTON
         if (btn.classList.contains("number")) {
             //IF TIME FOR TERM2
@@ -80,9 +87,17 @@ buttons.forEach((btn) => {
         }
         //IF PRESSING OPERATOR BUTTON
         if (btn.classList.contains("operater")) {
-            //IF NOTHING INPUTTED BEFOREHAND
+            //IF TERM1 AND TERM2 INPUTTED
+            if (display.innerText != "" && term1 != "") {
+                term2 = display.innerText;
+                display.innerText = calculate(term1, term2, operator);
+                term1 = display.innerText;
+                term2 = "";
+                operator = btn.innerText;
+                inputtingTerm2 = true;
+            }
             //IF TERM1 IS INPUTTED ALREADY
-            if (display.innerText != "") {
+            else if (display.innerText != "") {
                 console.log(display.innerText);
                 //assign term1
                 term1 = display.innerText;
@@ -91,7 +106,7 @@ buttons.forEach((btn) => {
                 //get ready to put in term2
                 inputtingTerm2 = true;
             }
-            //IF TERM1 AND TERM2 INPUTTED
+            //IF NOTHING INPUTTED BEFOREHAND
             
         }
         //IF PRESSING EQUALS BUTTON
@@ -102,6 +117,9 @@ buttons.forEach((btn) => {
             if (display.innerText != "" && term1 != "") {
                 term2 = display.innerText;
                 display.innerText = calculate(term1, term2, operator);
+                term1 = "";
+                term2 = "";
+                operator = "";
             }
         }
 
