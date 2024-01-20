@@ -23,7 +23,7 @@ const negate = function (a) {
 };
 
 const operate = function (a, b, operator) {
-  return operator(a, b);
+  return operator(a, b).toFixed(2);
 };
 
 const display = document.querySelector(".displaybox");
@@ -70,6 +70,7 @@ function calculate(firstTerm, secondTerm, sign) {
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
+    //IF USER NEEDS TO SEE MESSAGE
     if (locked) {
       return;
     }
@@ -79,6 +80,16 @@ buttons.forEach((btn) => {
       term1 = "";
       term2 = "";
       operator = "";
+    }
+    if (btn.classList.contains("deletebutton")) {
+      //IF NOTHING INSIDE YET
+      if (display.innerText == "") {
+        return;
+      }
+      display.innerText = display.innerText.slice(
+        0,
+        display.innerText.length - 1
+      );
     }
     //IF PRESSING NUMBER BUTTON
     if (btn.classList.contains("number")) {
