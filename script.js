@@ -35,6 +35,7 @@ let term1 = "",
   operator = "";
 let inputtingTerm2 = false;
 let locked = false;
+let decimallock = false;
 function addToScreen(input) {
   display.innerText += input;
 }
@@ -65,7 +66,7 @@ function calculate(firstTerm, secondTerm, sign) {
       operation = negate;
       break;
   }
-  return operate(parseInt(term1), parseInt(term2), operation);
+  return operate(parseFloat(term1), parseFloat(term2), operation);
 }
 
 buttons.forEach((btn) => {
@@ -81,6 +82,7 @@ buttons.forEach((btn) => {
       term2 = "";
       operator = "";
     }
+    //IF PRESSING DELETE BUTTON
     if (btn.classList.contains("deletebutton")) {
       //IF NOTHING INSIDE YET
       if (display.innerText == "") {
@@ -91,8 +93,23 @@ buttons.forEach((btn) => {
         display.innerText.length - 1
       );
     }
+    //IF PRESSING DECIMAL BUTTON
+    if (btn.classList.contains("decimal")) {
+      if (decimallock) {
+        return;
+      }
+      if (Number.isInteger(parseFloat(display.innerText))) {
+        addToScreen(".");
+        decimallock = true;
+      } else {
+        return;
+      }
+    }
     //IF PRESSING NUMBER BUTTON
     if (btn.classList.contains("number")) {
+      if (decimallock) {
+        decimallock = false;
+      }
       //IF TIME FOR TERM2
       if (inputtingTerm2) {
         clearScreen();
@@ -132,7 +149,7 @@ buttons.forEach((btn) => {
       //IF TERM1 AND TERM2 INPUTTED
       if (display.innerText != "" && term1 != "") {
         term2 = display.innerText;
-        if (operator == "÷" && parseInt(term2) == 0) {
+        if (operator == "÷" && parseFloat(term2) == 0) {
           locked = true;
           display.innerText = "Ooh na na na";
           setTimeout(function () {
@@ -151,7 +168,7 @@ buttons.forEach((btn) => {
     console.log("term1 is: " + term1);
     console.log("operator is: " + operator);
     console.log("term2 is: " + term2);
-
+    console.log(Number.isInteger(parseFloat(display.innerText)));
     // if (btn.classList.contains("clearbutton")) {
     //     display.innerText = "";
     //     term1 = "";
