@@ -34,7 +34,7 @@ let term1 = "",
   term2 = "",
   operator = "";
 let inputtingTerm2 = false;
-
+let locked = false;
 function addToScreen(input) {
   display.innerText += input;
 }
@@ -70,6 +70,9 @@ function calculate(firstTerm, secondTerm, sign) {
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
+    if (locked) {
+      return;
+    }
     //IF PRESSING CLEAR BUTTON
     if (btn.classList.contains("clearbutton")) {
       display.innerText = "";
@@ -118,6 +121,15 @@ buttons.forEach((btn) => {
       //IF TERM1 AND TERM2 INPUTTED
       if (display.innerText != "" && term1 != "") {
         term2 = display.innerText;
+        if (operator == "÷" && parseInt(term2) == 0) {
+          locked = true;
+          display.innerText = "Ooh na na na";
+          setTimeout(function () {
+            locked = false;
+            clearScreen();
+          }, 3000);
+          return;
+        }
         display.innerText = calculate(term1, term2, operator);
         term1 = "";
         term2 = "";
