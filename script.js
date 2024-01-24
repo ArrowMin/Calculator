@@ -23,7 +23,12 @@ const negate = function (a) {
 };
 
 const operate = function (a, b, operator) {
-  return operator(a, b).toFixed(2);
+  res = operator(a, b);
+  if (Number.isInteger(res)) {
+    return res;
+  } else {
+    return res.toFixed(1);
+  }
 };
 
 const display = document.querySelector(".displaybox");
@@ -98,10 +103,20 @@ buttons.forEach((btn) => {
       if (decimallock) {
         return;
       }
-      if (Number.isInteger(parseFloat(display.innerText))) {
+      if (inputtingTerm2) {
+        display.innerText = "";
+
+        inputtingTerm2 = false;
+      }
+      if (
+        Number.isInteger(parseFloat(display.innerText)) ||
+        display.innerText == ""
+      ) {
+        console.log("made it");
         addToScreen(".");
         decimallock = true;
       } else {
+        console.log("unfortunately made it");
         return;
       }
     }
@@ -114,6 +129,13 @@ buttons.forEach((btn) => {
       if (inputtingTerm2) {
         clearScreen();
         inputtingTerm2 = false;
+      }
+      if (
+        !Number.isInteger(parseFloat(display.innerText)) &&
+        display.innerText != ""
+      ) {
+        console.log("number lock");
+        return;
       }
       //if (display.innerText.length <= 10) {
       addToScreen(btn.innerText);
