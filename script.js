@@ -105,15 +105,10 @@ buttons.forEach((btn) => {
 
         inputtingTerm2 = false;
       }
-      if (
-        Number.isInteger(parseFloat(display.innerText)) ||
-        display.innerText == ""
-      ) {
-        console.log("made it");
-        addToScreen(".");
+      if (display.innerText == "") {
+        addToScreen("0.")
       } else {
-        console.log("unfortunately made it");
-        return;
+        addToScreen(".")
       }
     }
     //IF PRESSING NUMBER BUTTON
@@ -123,16 +118,29 @@ buttons.forEach((btn) => {
         clearScreen();
         inputtingTerm2 = false;
       }
-      if (
-        !Number.isInteger(parseFloat(display.innerText)) &&
-        display.innerText != ""
-      ) {
-        console.log("number lock");
-        return;
+      //IF THE SCREEN IS EMPTY, ALLOW PRESS
+      if (display.innerText == "") {
+        addToScreen(btn.innerText);
+      } else {
+        //IF THE SCREEN IS NOT EMPTY
+        if (
+            Number.isInteger(parseFloat(display.innerText))
+        ) {
+            addToScreen(btn.innerText);
+        } else {
+            console.log("number lock")
+            return;
+        }
       }
-      //if (display.innerText.length <= 10) {
-      addToScreen(btn.innerText);
-      //}
+
+    //   if (
+    //     !Number.isInteger(parseFloat(display.innerText)) &&
+    //     display.innerText != ""
+    //   ) {
+    //     console.log("number lock");
+    //     return;
+    //   }
+    //   addToScreen(btn.innerText);
     }
     //IF PRESSING OPERATOR BUTTON
     if (btn.classList.contains("operater")) {
