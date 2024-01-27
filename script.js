@@ -100,9 +100,6 @@ buttons.forEach((btn) => {
     }
     //IF PRESSING DECIMAL BUTTON
     if (btn.classList.contains("decimal")) {
-      if (decimallock) {
-        return;
-      }
       if (inputtingTerm2) {
         display.innerText = "";
 
@@ -114,7 +111,6 @@ buttons.forEach((btn) => {
       ) {
         console.log("made it");
         addToScreen(".");
-        decimallock = true;
       } else {
         console.log("unfortunately made it");
         return;
@@ -122,9 +118,6 @@ buttons.forEach((btn) => {
     }
     //IF PRESSING NUMBER BUTTON
     if (btn.classList.contains("number")) {
-      if (decimallock) {
-        decimallock = false;
-      }
       //IF TIME FOR TERM2
       if (inputtingTerm2) {
         clearScreen();
